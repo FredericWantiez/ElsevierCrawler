@@ -1,0 +1,12 @@
+# Get titles from the journal search page:
+reponse.css(".tile-title > .more-info").xpath("./text()").extract()
+
+# Re to match ISSN format
+r"([0-9]+-[0-9]{4})" 
+ex : r"([0-9]+-[0-9]{4})", "1572-3641"
+
+# Command to find all the ISSN on a catalog page
+for elem in response.css(".tile-para").xpath("./text()").extract():
+	ISSN = re.findall(r"([0-9]+-[0-9]{4})", elem)
+	if len(ISSN) != 0:
+		print(ISSN[0])
